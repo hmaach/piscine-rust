@@ -14,12 +14,12 @@ fn main() {
         if let Some('\n') = s.chars().next_back() {
             s.pop();
         }
+        attempts += 1;
         if s == correct_answer {
             println!("Number of trials: {}", attempts);
             break;
         } else {
             println!("{}", riddle);
         };
-        attempts += 1;
     }
 }
