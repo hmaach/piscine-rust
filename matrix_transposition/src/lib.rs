@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug, Eq, PartialEq)]
 
 pub struct Matrix(pub (i32, i32), pub (i32, i32));
 
