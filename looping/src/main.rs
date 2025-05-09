@@ -1,7 +1,7 @@
 fn main() {
     let riddle: &str = "I am the beginning of the end, and the end of time and space. I am essential to creation, and I surround every place. What am I?";
     let mut attempts: u32 = 0;
-    let correct_answer: &str = "e";
+    let correct_answer: &str = "The letter e";
 
     println!("{}", riddle);
     loop {
@@ -15,7 +15,7 @@ fn main() {
             s.pop();
         }
         if s == correct_answer {
-            println!("after {} attempts you get it right!", attempts);
+            println!("Number of trials: {}", attempts);
             break;
         } else {
             println!("{}", riddle);
