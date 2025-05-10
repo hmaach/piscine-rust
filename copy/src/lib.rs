@@ -1,5 +1,10 @@
 pub fn nbr_function(c: i32) -> (i32, f64, f64) {
-    let e: f64 = c.abs().pow(c.abs().try_into().unwrap()).into();
+    let e: f64 = if c >= 0 {
+        c.pow(c as u32) as f64
+    } else {
+        f64::NAN
+    };
+
     let natural_logarithm_absolute_v: f64 = (c as f64).abs().ln();
 
     (c, e, natural_logarithm_absolute_v)
