@@ -9,7 +9,7 @@ pub fn str_function(a: String) -> (String, String) {
     let mut exps: String = String::new();
     let nbs: Vec<String> = a.split_whitespace().map(str::to_string).collect();
     for (i, str_nb) in nbs.iter().enumerate() {
-        let nb = str_nb.parse::<f64>().unwrap().exp();
+        let nb = str_nb.parse::<f64>().unwrap().abs().exp();
         exps.push_str(nb.to_string().as_str());
         if i != nbs.len() - 1 {
             exps.push(' ');
