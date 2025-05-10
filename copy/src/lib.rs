@@ -1,5 +1,5 @@
 pub fn nbr_function(c: i32) -> (i32, f64, f64) {
-    let e: f64 = c.pow(c.try_into().unwrap()).into();
+    let e: f64 = c.abs().pow(c.abs().try_into().unwrap()).into();
     let natural_logarithm_absolute_v: f64 = (c as f64).abs().ln();
 
     (c, e, natural_logarithm_absolute_v)
