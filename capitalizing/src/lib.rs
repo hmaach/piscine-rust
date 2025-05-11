@@ -1,4 +1,7 @@
 pub fn capitalize_first(input: &str) -> String {
+    if input.len() == 0 {
+        return "".to_string();
+    }
     let mut to_string = input.to_string();
     to_string.replace_range(
         0..1,
@@ -10,7 +13,11 @@ pub fn capitalize_first(input: &str) -> String {
 pub fn title_case(input: &str) -> String {
     let mut to_string = input.to_string();
     for (i, _) in to_string.clone().chars().enumerate() {
-        if i == 0 || to_string.chars().nth(i - 1) == Some(' ') {
+        if i == 0
+            || to_string.chars().nth(i - 1) == Some(' ')
+            || to_string.chars().nth(i - 1) == Some('\t')
+            || to_string.chars().nth(i - 1) == Some('\n')
+        {
             to_string.replace_range(
                 i..i + 1,
                 &to_string.chars().nth(i).unwrap().to_string().to_uppercase(),
