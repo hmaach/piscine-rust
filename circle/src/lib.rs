@@ -19,7 +19,7 @@ impl Circle {
         (self.radius).powi(2) * PI
     }
     pub fn intersect(&self, other: Circle) -> bool {
-        self.center.distance(other.center)
+        self.center.distance(other.center).abs()
             <= ((self.center.0 - other.center.0) * (self.center.0 - other.center.0)
                 + (self.center.1 - other.center.1) * (self.center.1 - other.center.1))
                 .sqrt()
