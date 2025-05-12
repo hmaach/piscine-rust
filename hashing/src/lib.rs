@@ -17,11 +17,11 @@ pub fn mean(list: &[i32]) -> f64 {
 pub fn median(list: &[i32]) -> i32 {
     let mut new_vec = list.to_vec();
     new_vec.sort();
-    let n = list.len();
+    let n = new_vec.len();
     if n % 2 == 0 {
-        return new_vec[n / 2 - 1] + new_vec[n / 2] / 2;
+        return (new_vec[n / 2 - 1] + new_vec[n / 2]) / 2;
     }
-    return new_vec[n / 2];
+    new_vec[n / 2]
 }
 
 pub fn mode(list: &[i32]) -> i32 {
