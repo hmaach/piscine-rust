@@ -1,7 +1,13 @@
 use std::collections::HashMap;
 
 pub fn is_permutation(s1: &str, s2: &str) -> bool {
-    if s1.to_string().chars().count() != s2.to_string().chars().count() {
+    let s1_count = s1.to_string().chars().count();
+    let s2_count = s2.to_string().chars().count();
+    if s1_count != s2_count {
+        return false;
+    }
+
+    if s1_count == 1 && s1 != s2 {
         return false;
     }
 
@@ -17,9 +23,14 @@ pub fn is_permutation(s1: &str, s2: &str) -> bool {
     }
 
     for ch in s1.to_string().chars() {
-        if s_hash_map1.get(&ch).unwrap() - s_hash_map1.get(&ch).unwrap() != 0{
+        let s2_char = s_hash_map2.get(&ch);
+        if !s2_char.is_none() {
+            if s_hash_map1.get(&ch).unwrap() - s2_char.unwrap() != 0 {
+                return false;
+            }
+        } else {
             return false;
-        } 
+        }
     }
 
     true
