@@ -1,6 +1,5 @@
 use chrono::prelude::*;
 
-// this will be the structure that wil handle the errors
 #[derive(Debug, Eq, PartialEq)]
 pub struct FormError {
     form_values: (String, String),
@@ -28,13 +27,13 @@ impl Form {
     pub fn validate(&self) -> Result<(), FormError> {
         if self.name.is_empty() {
             return Err(FormError::new(
-                self.name.clone(),
+                self.name.clone(), 
                 self.password.clone(),
                 "Username is empty",
             ));
         } else if self.password.chars().count() < 8 {
             return Err(FormError::new(
-                self.name.clone(),
+                self.name.clone(), 
                 self.password.clone(),
                 "Password should be at least 8 characters long",
             ));
@@ -56,7 +55,7 @@ impl Form {
 
         if count_ascii == 0 || count_number == 0 || count_symbol == 0 {
             return Err(FormError::new(
-                self.name.clone(),
+                self.name.clone(), 
                 self.password.clone(),
                 "Password should be a combination of ASCII numbers, letters and symbols",
             ));
