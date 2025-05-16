@@ -1,17 +1,14 @@
+use std::fs::{File, OpenOptions};
+use std::io::Write;
 use std::path::Path;
-use std::fs::File;
-use std::fs::read_to_string;
-use std::io::ErrorKind;
 
 pub fn open_or_create<P: AsRef<Path>>(path: &P, content: &str) {
-
-    File::open(path).unwrap_or_else(|err|{
-        if err.kind() == ErrorKind::NotFound{
-            File::create(path).unwrap_or_else(|err|{
-                panic!("Error creating the file !");
-            })
-        }else{
-            panic!("Unexpected error while trying to read the file!");
-        }
-    });
+    let fs = OpenOptions::new().create(true).append(true).open(path);
+    let _ = match fs {
+        Ok(mut file) => match File::write(&mut file, content.as_bytes()) {
+            Ok(f) => f,
+            Err(e) => panic!("{e}"),
+        },
+        Err(err) => panic!("{err}"),
+    };
 }
