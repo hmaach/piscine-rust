@@ -1,12 +1,12 @@
 #[derive(Debug, Eq, PartialEq)]
 pub struct FormError {
-    form_values: (String, String),
+    form_values: (&'static str, String),
     date: String,
     err: &'static str,
 }
 
 impl FormError {
-    pub fn new(field_name: String, field_value: String, err: &'static str) -> Self {
+    pub fn new(field_name: &'static str, field_value: String, err: &'static str) -> Self {
         Self {
             form_values: (field_name, field_value),
             date: chrono::Utc::now().format("%Y-%m-%d %H:%M:%S").to_string(),
@@ -25,13 +25,13 @@ impl Form {
     pub fn validate(&self) -> Result<(), FormError> {
         if self.name.is_empty() {
             return Err(FormError::new(
-                self.name.clone(),
+                "name",
                 self.password.clone(),
                 "Username is empty",
             ));
         } else if self.password.chars().count() < 8 {
             return Err(FormError::new(
-                self.name.clone(),
+                "password",
                 self.password.clone(),
                 "Password should be at least 8 characters long",
             ));
@@ -53,7 +53,7 @@ impl Form {
 
         if count_ascii == 0 || count_number == 0 || count_symbol == 0 {
             return Err(FormError::new(
-                self.name.clone(),
+                "password",
                 self.password.clone(),
                 "Password should be a combination of ASCII numbers, letters and symbols",
             ));
