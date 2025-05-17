@@ -63,6 +63,7 @@ pub fn nbr_of_employees(mall: &Mall) -> usize {
     counter
 }
 
+
 pub fn check_for_securities(mall: &mut Mall, guards: Vec<(String, Guard)>) {
     let mut total_size: u64 = 0;
     let mut total_guards: u64 = 0;
@@ -77,7 +78,7 @@ pub fn check_for_securities(mall: &mut Mall, guards: Vec<(String, Guard)>) {
         }
     }
 
-    let required_guards = (total_size as f64 / 200.).ceil() as u64;
+    let required_guards = total_size  / 200 ;
     let guards_to_add = (required_guards - total_guards) as usize;
 
     let mut i: usize = 0;
