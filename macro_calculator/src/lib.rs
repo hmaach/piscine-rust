@@ -31,17 +31,17 @@ pub fn calculate_macros(foods: &[Food]) -> json::JsonValue {
     }
 
     for f in foods {
-        let calories = &f.calories.1.replace("kcal", "").parse::<f64>().unwrap_or(0.0);
+        let calories = &f.calories.1.replace("kcal", "").parse::<f64>().expect("aaaaaaa");
         *data.entry("calories").or_insert(0.) += calories * f.nbr_of_portions;
         *data.entry("fats").or_insert(0.) += f.fats * f.nbr_of_portions;
         *data.entry("carbs").or_insert(0.) += f.carbs * f.nbr_of_portions;
         *data.entry("proteins").or_insert(0.) += f.proteins * f.nbr_of_portions;
     }
 
-    data1.insert("calories", format_float(*data.get("calories").unwrap_or(&0.0)));
-    data1.insert("fats", format_float(*data.get("fats").unwrap_or(&0.0)));
-    data1.insert("carbs", format_float(*data.get("carbs").unwrap_or(&0.0)));
-    data1.insert("proteins", format_float(*data.get("proteins").unwrap_or(&0.0)));
+    data1.insert("calories", format_float(*data.get("calories").expect("bbbbbbb")));
+    data1.insert("fats", format_float(*data.get("fats").expect("cccccc")));
+    data1.insert("carbs", format_float(*data.get("carbs").expect("ddddd")));
+    data1.insert("proteins", format_float(*data.get("proteins").expect("eeeeee")));
 
     json::JsonValue::from(data1)
 }
