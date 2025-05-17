@@ -11,8 +11,6 @@ pub struct Food {
     pub nbr_of_portions: f64,
 }
 fn round(f: f64) -> f64 {
-    dbg!(f);
-    dbg!((f * 100.0).round() / 100.0);
     (f * 100.0).round() / 100.0
 }
 
@@ -28,7 +26,6 @@ pub fn calculate_macros(foods: &[Food]) -> json::JsonValue {
     }
 
     *data.entry("calories").or_insert(0.) = round(*data.get("calories").unwrap());
-
 
     json::JsonValue::from(data)
 }
