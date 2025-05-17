@@ -20,7 +20,6 @@ pub fn biggest_store(mall: &Mall) -> (String, Store) {
     (res_store.0.unwrap(), res_store.1.unwrap())
 }
 
-pub fn check_for_securities(mal: &mut Mall, gard: Vec<(String, Guard)>) {
 
 pub fn highest_paid_employee(mal: &Mall) -> Vec<(&str, Employee)> {
     let mut emp_vec: Vec<(&str, Employee)> = vec![];
