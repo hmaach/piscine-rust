@@ -26,22 +26,23 @@ pub fn calculate_macros(foods: &[Food]) -> json::JsonValue {
     let mut data: HashMap<&'static str, f64> = HashMap::new();
     let mut data1 = HashMap::new();
 
-    if foods.len() == 0 {
+    if foods.is_empty() {
         return json::JsonValue::from(data);
     }
 
     for f in foods {
-        let calories = &f.calories.1.replace("kcal", "").parse::<f64>().unwrap();
+        let calories = &f.calories.1.replace("kcal", "").parse::<f64>().unwrap_or(0.0);
         *data.entry("calories").or_insert(0.) += calories * f.nbr_of_portions;
         *data.entry("fats").or_insert(0.) += f.fats * f.nbr_of_portions;
         *data.entry("carbs").or_insert(0.) += f.carbs * f.nbr_of_portions;
         *data.entry("proteins").or_insert(0.) += f.proteins * f.nbr_of_portions;
     }
 
-    data1.insert("calories", format_float(*data.get("calories").unwrap()));
-    data1.insert("fats", format_float(*data.get("fats").unwrap()));
-    data1.insert("carbs", format_float(*data.get("carbs").unwrap()));
-    data1.insert("proteins", format_float(*data.get("proteins").unwrap()));
+    data1.insert("calories", format_float(*data.get("calories").unwrap_or(&0.0)));
+    data1.insert("fats", format_float(*data.get("fats").unwrap_or(&0.0)));
+    data1.insert("carbs", format_float(*data.get("carbs").unwrap_or(&0.0)));
+    data1.insert("proteins", format_float(*data.get("proteins").unwrap_or(&0.0)));
 
     json::JsonValue::from(data1)
 }
+
