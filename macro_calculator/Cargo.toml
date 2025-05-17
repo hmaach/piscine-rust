@@ -1,0 +1,7 @@
+[package]
+name = "macro_calculator"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+json = "0.12.4"
