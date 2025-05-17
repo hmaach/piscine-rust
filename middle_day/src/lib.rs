@@ -6,11 +6,12 @@ pub fn middle_day(year: u32) -> Option<chrono::Weekday> {
         return None;
     }
 
-    let date_str = "02/07/2022";
+    let mut date_str = String::from("02/07/");
+    date_str.push_str(year.to_string().as_str());
 
     let format = "%d/%m/%Y";
 
-    let date = NaiveDate::parse_from_str(date_str, format)
+    let date = NaiveDate::parse_from_str(date_str.as_str(), format)
         .unwrap()
         .format("%a %m %Y");
 
