@@ -1,6 +1,6 @@
 mod mall;
 
-// use std::iter::Map;
+use std::iter::Map;
 
 pub use mall::*;
 
@@ -20,24 +20,33 @@ pub fn biggest_store(mall: &Mall) -> (String, Store) {
     (res_store.0.unwrap(), res_store.1.unwrap())
 }
 
-pub fn highest_paid_employee(mall: &Mall) -> (String, Employee) {
-    let mut biggest: f64 = 0.;
-    let mut res_employee: (Option<String>, Option<Employee>) = (None, None);
+pub fn check_for_securities(mal: &mut Mall, gard: Vec<(String, Guard)>) {
 
-    for (_, floor) in &mall.floors {
-        for (_, store) in &floor.stores {
-            for (key, employee) in store.employees.clone() {
-                if employee.salary > biggest {
-                    biggest = employee.salary;
-                    res_employee = (Some(key.to_string()), Some(employee.clone()));
+pub fn highest_paid_employee(mal: &Mall) -> Vec<(&str, Employee)> {
+    let mut emp_vec: Vec<(&str, Employee)> = vec![];
+    let mut max = 0.;
+
+    for (_, flor) in mal.floors.clone() {
+        for (_, stor) in flor.stores {
+            for (_, emp) in stor.employees {
+                if max < emp.salary {
+                    max = emp.salary;
+                }
+            }
+        }
+    }
+    for (_, flor) in &mal.floors {
+        for (_, stor) in &flor.stores {
+            for (nn, emp) in &stor.employees {
+                if max == emp.salary {
+                    emp_vec.push((nn, emp.clone()))
                 }
             }
         }
     }
 
-    (res_employee.0.unwrap(), res_employee.1.unwrap())
+    emp_vec
 }
-
 pub fn nbr_of_employees(mall: &Mall) -> usize {
     let mut counter: usize = 0;
 
@@ -54,6 +63,7 @@ pub fn nbr_of_employees(mall: &Mall) -> usize {
     }
     counter
 }
+
 pub fn check_for_securities(mall: &mut Mall, guards: Vec<(String, Guard)>) {
     let mut total_size: u64 = 0;
     let mut total_guards: u64 = 0;
@@ -77,6 +87,7 @@ pub fn check_for_securities(mall: &mut Mall, guards: Vec<(String, Guard)>) {
         i += 1;
     }
 }
+
 pub fn cut_or_raise(mall: &mut Mall) {
     for (_, floor) in &mut mall.floors {
         for (_, store) in &mut floor.stores {
