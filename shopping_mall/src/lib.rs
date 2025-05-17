@@ -84,7 +84,6 @@ pub fn cut_or_raise(mall: &mut Mall) {
                 dbg!(employee.working_hours.1 - employee.working_hours.0);
                 if employee.working_hours.1 - employee.working_hours.0 >= 10 {
                     employee.raise(employee.salary * 0.10);
-                    dbg!(employee.salary);
                 } else {
                     employee.cut(employee.salary * 0.10);
                 }
