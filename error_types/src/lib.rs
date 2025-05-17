@@ -28,7 +28,7 @@ impl Form {
         if self.name.is_empty() {
             return Err(FormError::new(
                 "name",
-                self.password.clone(),
+                self.name.clone(),
                 "Username is empty",
             ));
         } else if self.password.chars().count() < 8 {
