@@ -1,7 +1,3 @@
-use std::collections::HashMap;
-
-use json;
-
 pub struct Food {
     pub name: String,
     pub calories: (String, String),
@@ -10,39 +6,36 @@ pub struct Food {
     pub proteins: f64,
     pub nbr_of_portions: f64,
 }
-fn round(f: f64) -> f64 {
-    (f * 100.0).round() / 100.0
-}
-fn format_float(value: f64) -> String {
-    let rounded = (value * 100.0).round() / 100.0;
-    if (rounded * 10.0).round() / 10.0 == rounded {
-        format!("{:.1}", rounded)
-    } else {
-        format!("{:.2}", rounded)
-    }
-}
 
 pub fn calculate_macros(foods: &[Food]) -> json::JsonValue {
-    let mut data: HashMap<&'static str, f64> = HashMap::new();
-    let mut data1 = HashMap::new();
+    let mut calories_total = 0.0;
+    let mut fats_total = 0.0;
+    let mut carbs_total = 0.0;
+    let mut proteins_total = 0.0;
 
-    if foods.is_empty() {
-        return json::JsonValue::from(data);
+    for food in foods {
+        let cal = food
+            .calories
+            .1
+            .trim_end_matches("kcal")
+            .parse::<f64>()
+            .unwrap_or(0.);
+        calories_total += cal * food.nbr_of_portions;
+        fats_total += food.fats * food.nbr_of_portions;
+        carbs_total += food.carbs * food.nbr_of_portions;
+        proteins_total += food.proteins * food.nbr_of_portions;
     }
 
-    for f in foods {
-        let calories = &f.calories.1.replace("kcal", "").parse::<f64>().expect("aaaaaaa");
-        *data.entry("calories").or_insert(0.) += calories * f.nbr_of_portions;
-        *data.entry("fats").or_insert(0.) += f.fats * f.nbr_of_portions;
-        *data.entry("carbs").or_insert(0.) += f.carbs * f.nbr_of_portions;
-        *data.entry("proteins").or_insert(0.) += f.proteins * f.nbr_of_portions;
-    }
+    calories_total = (calories_total * 100.0).round() / 100.0;
+    fats_total = (fats_total * 100.0).round() / 100.0;
+    carbs_total = (carbs_total * 100.0).round() / 100.0;
+    proteins_total = (proteins_total * 100.0).round() / 100.0;
 
-    data1.insert("calories", format_float(*data.get("calories").expect("bbbbbbb")));
-    data1.insert("fats", format_float(*data.get("fats").expect("cccccc")));
-    data1.insert("carbs", format_float(*data.get("carbs").expect("ddddd")));
-    data1.insert("proteins", format_float(*data.get("proteins").expect("eeeeee")));
+    let mut res = json::Null;
+    res["cals"] = calories_total.into();
+    res["fats"] = fats_total.into();
+    res["carbs"] = carbs_total.into();
+    res["proteins"] = proteins_total.into();
 
-    json::JsonValue::from(data1)
+    return res;
 }
-
