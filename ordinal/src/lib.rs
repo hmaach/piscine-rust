@@ -1,4 +1,8 @@
 pub fn num_to_ordinal(x: u32) -> String {
+    if x > 10 && x < 20 {
+        return format!("{x}th");
+    }
+
     let y = x % 10;
 
     let cardinal = match y {
