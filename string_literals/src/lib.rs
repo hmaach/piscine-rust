@@ -1,9 +1,9 @@
 pub fn is_empty(v: &str) -> bool {
-    v.to_owned().is_empty()
+    v.is_empty()
 }
 
 pub fn is_ascii(v: &str) -> bool {
-    for ch in v.to_owned().chars() {
+    for ch in v.chars() {
         if !ch.is_ascii() {
             return false;
         }
@@ -12,7 +12,7 @@ pub fn is_ascii(v: &str) -> bool {
 }
 
 pub fn contains(v: &str, pat: &str) -> bool {
-    v.to_owned().contains(pat)
+    v.contains(pat)
 }
 
 pub fn split_at(v: &str, index: usize) -> (&str, &str) {
@@ -20,6 +20,5 @@ pub fn split_at(v: &str, index: usize) -> (&str, &str) {
 }
 
 pub fn find(v: &str, pat: char) -> usize {
-    v.to_owned().find(pat).unwrap()
+    v.find(pat).unwrap()
 }
-
