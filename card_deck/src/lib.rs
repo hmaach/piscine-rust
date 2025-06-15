@@ -19,8 +19,7 @@ pub enum Rank {
 
 impl Suit {
     pub fn random() -> Suit {
-        let mut rng = rand::rng();
-        match rng.random_range(1..=4) {
+        match rand::thread_rng().gen_range(1..=4) {
             1 => Suit::Heart,
             2 => Suit::Diamond,
             3 => Suit::Spade,
@@ -40,8 +39,7 @@ impl Suit {
 
 impl Rank {
     pub fn random() -> Self {
-        let mut rng = rand::rng();
-        let n = rng.random_range(1..=13);
+        let n = rand::thread_rng().gen_range(1..=13);
 
         match n {
             13 => Rank::King,
