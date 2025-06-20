@@ -45,12 +45,6 @@ impl Form {
                 self.password.clone(),
                 "Password should be at least 8 characters long",
             ))
-        } else if self.password.chars().count() < 8 {
-            Err(FormError::new(
-                "password",
-                self.password.clone(),
-                "Password should be a combination of ASCII numbers, letters and symbols",
-            ))
         } else {
             let (mut count_ascii, mut count_number, mut count_symbol) = (0, 0, 0);
 
@@ -71,7 +65,7 @@ impl Form {
                 Err(FormError::new(
                     "password",
                     self.password.clone(),
-                    "Password must include letters, numbers, and symbols.",
+                    "Password should be a combination of ASCII numbers, letters and symbols",
                 ))
             } else {
                 Ok(())
