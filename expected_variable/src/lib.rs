@@ -12,7 +12,6 @@ fn is_not_camel_or_snake(s: &str) -> bool {
 }
 
 pub fn expected_variable(source: &str, target: &str) -> Option<String> {
-    dbg!(is_not_camel_or_snake(target));
     if is_not_camel_or_snake(source) || is_not_camel_or_snake(target) {
         return None;
     }
