@@ -27,7 +27,7 @@ pub fn median(list: &[i32]) -> i32 {
 
 pub fn mode(list: &[i32]) -> i32 {
     let mut hash_map = HashMap::new();
-    let mut res = 0;
+    let mut res = 0;    
 
     for nb in list {
         *hash_map.entry(nb).or_insert(0) += 1;
