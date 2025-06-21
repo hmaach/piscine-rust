@@ -14,7 +14,8 @@ pub fn middle_day(year: u32) -> Option<chrono::Weekday> {
         Err(_) => return None,
     };
 
-    let formatted_date: Vec<_> = date.to_string().split(' ').collect();
+    let binding = date.to_string().clone();
+    let formatted_date = binding.split(" ").collect::<Vec<_>>();
 
     match formatted_date[0].parse::<Weekday>() {
         Ok(date) => Some(date),
