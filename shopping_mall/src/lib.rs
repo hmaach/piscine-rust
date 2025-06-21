@@ -61,12 +61,9 @@ pub fn nbr_of_employees(mall: &Mall) -> usize {
 }
 
 pub fn check_for_securities(mall: &mut Mall, guards: Vec<(String, Guard)>) {
+    let mut g = guards.clone();
     let mut total_size: u64 = 0;
     let mut total_guards: u64 = 0;
-
-    for (_, _) in mall.guards.clone() {
-        total_guards += 1;
-    }
 
     for (_, floor) in &mall.floors {
         for (_, store) in &floor.stores {
@@ -74,16 +71,10 @@ pub fn check_for_securities(mall: &mut Mall, guards: Vec<(String, Guard)>) {
         }
     }
 
-    let required_guards = total_size / 200;
-
-    if required_guards > total_guards {
-        let guards_to_add = (required_guards - total_guards) as usize;
-        let mut i: usize = 0;
-
-        while i < guards_to_add && i < guards.len() {
-            mall.hire_guard(guards[i].0.clone(), guards[i].1.clone());
-            i += 1;
-        }
+    while total_guards * 200 < total_size && !g.is_empty() {
+        total_guards += 1;
+        mall.hire_guard(g[0].0.clone(), g[0].1.clone());
+        g.remove(0);
     }
 }
 
