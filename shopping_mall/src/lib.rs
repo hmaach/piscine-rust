@@ -1,6 +1,6 @@
-mod mall;
+pub mod mall;
 
-pub use mall::*;
+use mall::*;
 
 pub fn biggest_store(mall: &Mall) -> (String, Store) {
     let mut biggest: u64 = 0;
