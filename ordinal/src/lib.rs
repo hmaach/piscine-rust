@@ -2,6 +2,7 @@ pub fn num_to_ordinal(x: u32) -> String {
     let mut res = String::from(x.to_string());
 
     match x {
+        0 => res.push_str("th"),
         1 => res.push_str("st"),
         2 => res.push_str("nd"),
         3 => res.push_str("rd"),
