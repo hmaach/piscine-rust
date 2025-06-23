@@ -1,0 +1,6 @@
+[package]
+name = "rgb_match"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
