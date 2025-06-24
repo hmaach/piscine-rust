@@ -1,6 +1,6 @@
 use std::collections::{HashMap, HashSet};
 
-use mobs::{Boss, Member, Mob, Role};
+use mobs::{Boss, Member, Mob};
 
 fn main() {
     let mut members_1 = HashMap::new();
