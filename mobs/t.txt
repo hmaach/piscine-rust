@@ -1,0 +1,73 @@
+main.rs :
+use std::collections::{HashMap, HashSet};
+
+use mobs::*;
+
+fn main() {
+    let mut members_1 = HashMap::new();
+    members_1.insert(
+        "Lfarssi".to_owned(),
+        Member {
+            age: 90,
+            role: Role::Soldier,
+        },
+    );
+    members_1.insert(
+        "Fahd".to_owned(),
+        Member {
+            age: 90,
+            role: Role::Caporegime,
+        },
+    );
+    members_1.insert(
+        "Madara".to_owned(),
+        Member {
+            age: 90,
+            role: Role::Associate,
+        },
+    );...
+
+lib.rs:
+pub mod mobs;
+
+pub use mobs::*;
+
+mobs.rs:
+use std::collections::{HashMap, HashSet};
+
+pub use boss::Boss;
+pub use member::{Member, Role};
+
+#[derive(Debug, PartialEq)]
+pub struct Mob {
+    pub name: String,
+    pub boss: Boss,
+    pub members: HashMap<String, Member>,
+    pub cities: HashSet<String>,
+    pub wealth: u64,
+}
+
+impl Mob {
+    pub fn recruit(&mut self, info: (&str, u32)) {
+        let member = Member {
+            age: info.1,
+            role: Role::Associate,
+        };
+        self.members.insert(info.0.to_owned(), member);
+    }...
+
+src/mobs/boss.rs:
+#[derive(Debug, PartialEq)]
+pub struct Boss {
+    pub name: String,
+    pub age: u32,
+}
+
+impl Boss {
+    pub fn new(name: &str, age: u32) -> Self {
+        Self {
+            name: name.to_owned(),
+            age: age,
+        }
+    }
+}

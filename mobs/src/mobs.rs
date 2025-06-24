@@ -1,11 +1,12 @@
-use std::collections::{HashMap, HashSet};
+use std::{collections::{HashMap, HashSet}, path};
 
-use crate::mobs::{
-    boss::Boss,
-    member::{Member, Role},
-};
+
 pub mod boss;
+
 pub mod member;
+
+pub use boss::*;
+pub use member::*;
 
 #[derive(Debug, PartialEq)]
 pub struct Mob {
