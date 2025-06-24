@@ -1,6 +1,7 @@
 use std::collections::{HashMap, HashSet};
 
-use mobs::{Boss, Member, Mob};
+// use mobs::member::Member;
+use mobs::{boss::Boss, member::*, Mob};
 
 fn main() {
     let mut members_1 = HashMap::new();
@@ -8,21 +9,21 @@ fn main() {
         "Lfarssi".to_owned(),
         Member {
             age: 90,
-            role: mobs::Role::Soldier,
+            role: Role::Soldier,
         },
     );
     members_1.insert(
         "Fahd".to_owned(),
         Member {
             age: 90,
-            role: mobs::Role::Caporegime,
+            role: Role::Caporegime,
         },
     );
     members_1.insert(
         "Madara".to_owned(),
         Member {
             age: 90,
-            role: mobs::Role::Associate,
+            role: Role::Associate,
         },
     );
 
@@ -42,21 +43,21 @@ fn main() {
         "Yassine".to_owned(),
         Member {
             age: 70,
-            role: mobs::Role::Soldier,
+            role: Role::Soldier,
         },
     );
     members_2.insert(
         "Isayen".to_owned(),
         Member {
             age: 80,
-            role: mobs::Role::Caporegime,
+            role: Role::Caporegime,
         },
     );
     members_2.insert(
         "Nachti".to_owned(),
         Member {
             age: 40,
-            role: mobs::Role::Associate,
+            role: Role::Associate,
         },
     );
 
