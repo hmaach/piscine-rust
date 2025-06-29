@@ -23,15 +23,7 @@ impl AppendStr for StringValue {
     }
 
     fn remove_punctuation_marks(&mut self) -> Self {
-        if let Some(ch) = self.value.chars().last() {
-            match ch {
-                '.' | ',' | '?' | '!' => {
-                    self.value.pop();
-                }
-                _ => (),
-            }
-        }
-
+        self.value.retain(|c| !r"?.,!".contains(c));
         self.clone()
     }
 }

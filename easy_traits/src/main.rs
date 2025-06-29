@@ -2,7 +2,7 @@ use easy_traits::*;
 
 fn main() {
     let mut str_aux = StringValue {
-        value: String::from("hello"),
+        value: String::from("-155.5"),
     };
 
     println!("Before append: {}", str_aux.value);
