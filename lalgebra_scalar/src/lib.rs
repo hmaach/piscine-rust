@@ -1,4 +1,6 @@
-pub trait Scalar: Sized {
+use std::ops::{Add, Div, Mul, Sub};
+
+pub trait Scalar: Clone + Add + Sub + Mul + Div {
     type Item;
     fn zero() -> Self::Item;
     fn one() -> Self::Item;
