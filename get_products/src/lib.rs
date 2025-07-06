@@ -1,4 +1,7 @@
 pub fn get_products(nums: Vec<usize>) -> Vec<usize> {
+    if nums.len() < 2{
+        return vec![];
+    }
     let mut result = vec![1; nums.len()];
 
     let mut prod = 1;
